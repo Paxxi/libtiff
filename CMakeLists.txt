@@ -719,12 +719,32 @@ endif()
 # Process subdirectories
 add_subdirectory(port)
 add_subdirectory(libtiff)
-add_subdirectory(tools)
-add_subdirectory(test)
-add_subdirectory(contrib)
+option(BUILD_TOOLS "Build utilities" ON)
+if (BUILD_TOOLS)
+  add_subdirectory(tools)
+endif()
+
+option(BUILD_TESTS "Build tests" ON)
+if (BUILD_TESTS)
+  add_subdirectory(test)
+endif()
+
+option(BUILD_CONTRIB "Build contrib" ON)
+if (BUILD_CONTRIB)
+  add_subdirectory(contrib)
+endif()
+
 add_subdirectory(build)
-add_subdirectory(man)
-add_subdirectory(html)
+
+option(BUILD_MANUAL "Build manual" ON)
+if (BUILD_MANUAL)
+  add_subdirectory(man)
+endif()
+
+option(BUILD_HTML "Build html manual" ON)
+if (BUILD_HTML)
+  add_subdirectory(html)
+endif()
 
 #message(STATUS "EXTRA_DIST: ${EXTRA_DIST}")
 
